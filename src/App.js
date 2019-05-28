@@ -4,10 +4,14 @@ import './App.css';
 import renderHTML from 'react-render-html';
 class App extends Component {
 
-constructor(props) {
-    super(props);
-    
-  }
+    constructor(props) {
+        super(props);
+        this.handleEvent = this.handleEvent.bind(this);
+    }
+
+    componentDidMount(){
+        this.handleEvent();
+    }
 
   render(){
     return (
@@ -33,9 +37,22 @@ constructor(props) {
             </g>
         </svg>
     </div>
-</main>
+    </main>
     )
-  } 
+  }
+
+  handleEvent(){
+    var hour = document.querySelector("#hour");
+    var minute = document.querySelector("#minute");
+    var second = document.querySelector("#second");
+    var hrPosition = 20;
+    var mnPosition = 130;
+    var scPosition = 267;
+    hour.style.transform = " rotate("+ hrPosition +"deg)";
+    minute.style.transform = " rotate("+ mnPosition +"deg)";
+    second.style.transform = " rotate("+ scPosition +"deg)";
+  }
+
 }
 
 export default App;
