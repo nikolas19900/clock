@@ -10,7 +10,7 @@ class App extends Component {
     }
 
     componentDidMount(){
-        this.handleEvent();
+        var interval = setInterval(this.handleEvent,1000);
     }
 
   render(){
@@ -45,13 +45,26 @@ class App extends Component {
     var hour = document.querySelector("#hour");
     var minute = document.querySelector("#minute");
     var second = document.querySelector("#second");
-    var hrPosition = 20;
-    var mnPosition = 130;
-    var scPosition = 267;
+
+    var date = new Date();
+    var tempHour = date.getHours();
+    var tempMin = date.getMinutes();
+    var tempSecond = date.getSeconds();
+    var hrPosition = (tempHour * 360/12)+(tempMin*(360/60)/12);
+    var mnPosition = (tempMin *360/60)+(tempSecond*(360/60)/60);
+    var scPosition = tempSecond*360/60;
+
+    hrPosition = hrPosition + (3/360);
+    mnPosition = mnPosition + (6/60);
+    scPosition = scPosition + 6;
+
     hour.style.transform = " rotate("+ hrPosition +"deg)";
     minute.style.transform = " rotate("+ mnPosition +"deg)";
     second.style.transform = " rotate("+ scPosition +"deg)";
   }
+
+
+
 
 }
 
